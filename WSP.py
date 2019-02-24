@@ -1,4 +1,3 @@
-just a test
 #!/usr/bin/python
 #!encoding=UTF-8
 import subprocess, time, os, sys
@@ -13,8 +12,7 @@ if not os.path.isdir('/home/.ressources'):
 	subprocess.call(['sudo','apt-get','install','mplayer','-y'])
 	subprocess.call(['sudo','apt-get','install','python3.7','-y'])
 	subprocess.call(['sudo','apt-get','install','git','-y'])
-	os.chdir("/home/.ressources")
-	if not os.path.isdir('/home/.ressources/Secure_Working_Sessions'):
+	if not os.path.isdir('/home/.gomora/Secure_Working_Sessions'):
 		subprocess.call(['git','clone','https://github.com/DanielWinzden/Secure_Working_Sessions.git'])
         print("            +---------------------+")
         print("            | Installation sucess |")
@@ -30,7 +28,7 @@ def cool_print(string, speed):
                 sys.stdout.flush()
                 i=i+1
 #coeur du code
-subprocess.call(['bash','/home/.ressources/Secure_Working_Sessions/declaration.sh'])
+subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/declaration.sh'])
 cool_print('                                                      \n',0.01)
 cool_print('                      .                               \n',0.01)
 cool_print('                   .  |  .                            \n',0.01)
