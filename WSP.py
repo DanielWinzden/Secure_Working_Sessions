@@ -4,7 +4,7 @@ import subprocess, time, os, sys
 
 #installation
 if not os.path.isdir('/home/Secure_Working_Sessions'):
-        os.makedirs('/home/Secure_Working_Sessions)
+        os.makedirs('/home/Secure_Working_Sessions')
 	print("               +--------------+")
 	print("               | Installation |")
 	print("               +--------------+\n")
