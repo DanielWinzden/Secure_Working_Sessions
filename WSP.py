@@ -18,7 +18,7 @@ if not os.path.isdir('/home/.gomora'):
 		subprocess.call(['git','clone','https://github.com/DanielWinzden/Secure_Working_Sessions.git'])
 	print("Please, choose the directory where you'll work")
 	subprocess.call(['zenity', '--file-selection', '--title="Choose a directory"', '--directory', '>', 'directory'])
-	file = file.open('./directory','r')
+	file = open('./directory','r')
 	directory = file.readlines()
 	print(directory)
         print("            +---------------------+")
@@ -36,7 +36,7 @@ def cool_print(string, speed):
 		i=i+1
 
 def animation() :
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/declaration.sh'])
+	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/declaration.sh'])
 	print('\n')
 	cool_print('                      .                               \n',0.02)
 	cool_print('                   .  |  .                            \n',0.02)
@@ -78,16 +78,16 @@ def Main() :
 	print('+---http://ftp.fau.de/cdn.media.ccc.de/')
 
 def choose_a_dir () :
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/choose_dir.sh'])
-	file = open('/home/.gomora/Secure_Working_Sessions/ressources/dir','r')
+	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/choose_dir.sh'])
+	file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/dir','r')
 	directory = file.readlines()
 	file.close()
 	directory = directory[0]
-	os.remove('/home/.gomora/Secure_Working_Sessions/ressources/dir')
+	os.remove('/home/.gomora/Secure_Working_Sessions/ressources/files/dir')
 	return directory
 
 def save_session(directory) :
-	file = open('/home/.gomora/Secure_Working_Sessions/ressources/sessions_list','a')
+	file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sessions_list','a')
 	file.write(directory)
 	file.close()
 
@@ -103,7 +103,7 @@ def remove_n(liste) :
 	return clear_list
 
 def read_dir_list() :
-        file = open('/home/.gomora/Secure_Working_Sessions/ressources/sessions_list','r')
+        file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sessions_list','r')
         dir_list = file.readlines()
         file.close()
         return dir_list
@@ -134,41 +134,33 @@ def About() :
 	Main()
 
 def Start_a_new_session() :
+
 	sequence = raw_input('\nenter the name of the sequence :\ne.g : "Finish the html module" , "Learn about Li-Fi networks" , "Newspaper break" etc... \n> ')
 	duration = raw_input('\nenter the time you plan for it to be achieved (unit: minutes)\n> ')
 	duration = int(duration)*60
 
+	sequence_value = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sequence_value','w')
+	sequence_value.write(sequence)
+	sequence_value.close()
+
+	duration_value = open('/home/.gomora/Secure_Working_Sessions/ressources/files/duration_value','w')
+        duration_value.write(str(duration))
+	duration_value.close()
+
 	print('\nNow please choose a directory for your session ... ')
 	time.sleep(3)
+
 	directory = choose_a_dir()
-        dir_list = save_session(directory)
+        save_session(directory)
+	dir_list = read_dir_list()
 	dir_list = remove_n(dir_list)
 
 	print(str('\nStarting sequence : ')+str(sequence)+str('...\n'))
 
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/new_session.sh'])
-	x=0
-	i=0
-	a=0
-	b=0
-	c=0
-	d=0
-	while i<duration:
-		sys.stdout.write(str('\rWork in progress ')+str(x)+str('%'))
-		sys.stdout.flush()
-		time.sleep(1)
-		i=i+1
-		x=i*100
-		x=x/duration
-		if x >= 25 and a == 0 :
-			a=1
-		if x >= 50 and a == 0 :
-			b=1
-                if x >= 75 and a == 0 :
-                        c=1
-                if x >= 100 and a == 0 :
-                        d=1
-	print('\n')
+	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/new_session.sh'])
+        clear_screen()
+        Main()
+
 
 def Open_a_previous_working_sequence() :
 	print('[previous working sessions : ]')
@@ -183,8 +175,16 @@ def Open_a_previous_working_sequence() :
 	print('+---http://ftp.fau.de/cdn.media.ccc.de/')
 	choice = input('Your choice :\n> ')
 	dir=dir_list[choice]
-	dir = str('"')+str(choice)+str('"')
-	subprocess.call(['nautilus',dir])
+	braquet = "'"
+	dir = braquet+str(dir)+braquet
+	process_content=str("nautilus ")+dir+str(" >/dev/null 2>&1 </dev/null &")
+	process = open('/home/.gomora/Secure_Working_Sessions/ressources/bash/open_folder.sh','w')
+	process.write(str("#!/bin/bash\n"))
+	process.write(process_content)
+	process.close()
+	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/open_folder.sh'])
+	clear_screen()
+	Main()
 
 if 0<choice<7 :
 	if choice == 1 :
