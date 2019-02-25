@@ -3,8 +3,8 @@
 import subprocess, time, os, sys
 
 #installation
-if not os.path.isdir('/home/.gomora'):
-        os.makedirs('/home/.gomora')
+if not os.path.isdir('/home/Secure_Working_Sessions'):
+        os.makedirs('/home/Secure_Working_Sessions)
 	print("               +--------------+")
 	print("               | Installation |")
 	print("               +--------------+\n")
@@ -14,7 +14,7 @@ if not os.path.isdir('/home/.gomora'):
 	subprocess.call(['sudo','apt-get','install','git','-y'])
 	subprocess.call(['sudo','apt-get','install','xterm','-y'])
 	subprocess.call(['sudo','apt-get','install','nautilus','-y'])
-	if not os.path.isdir('/home/.gomora/Secure_Working_Sessions'):
+	if not os.path.isdir('/home/Secure_Working_Sessions'):
 		subprocess.call(['git','clone','https://github.com/DanielWinzden/Secure_Working_Sessions.git'])
 	print("Please, choose the directory where you'll work")
 	subprocess.call(['zenity', '--file-selection', '--title="Choose a directory"', '--directory', '>', 'directory'])
@@ -36,7 +36,7 @@ def cool_print(string, speed):
 		i=i+1
 
 def animation() :
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/declaration.sh'])
+	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/declaration.sh'])
 	print('\n')
 	cool_print('                      .                               \n',0.02)
 	cool_print('                   .  |  .                            \n',0.02)
@@ -78,16 +78,16 @@ def Main() :
 	print('+---http://ftp.fau.de/cdn.media.ccc.de/')
 
 def choose_a_dir () :
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/choose_dir.sh'])
-	file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/dir','r')
+	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/choose_dir.sh'])
+	file = open('/home/Secure_Working_Sessions/ressources/files/dir','r')
 	directory = file.readlines()
 	file.close()
 	directory = directory[0]
-	os.remove('/home/.gomora/Secure_Working_Sessions/ressources/files/dir')
+	os.remove('/home/Secure_Working_Sessions/ressources/files/dir')
 	return directory
 
 def save_session(directory) :
-	file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sessions_list','a')
+	file = open('/home/Secure_Working_Sessions/ressources/files/sessions_list','a')
 	file.write(directory)
 	file.close()
 
@@ -103,7 +103,7 @@ def remove_n(liste) :
 	return clear_list
 
 def read_dir_list() :
-        file = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sessions_list','r')
+        file = open('/home/Secure_Working_Sessions/ressources/files/sessions_list','r')
         dir_list = file.readlines()
         file.close()
         return dir_list
@@ -139,11 +139,11 @@ def Start_a_new_session() :
 	duration = raw_input('\nenter the time you plan for it to be achieved (unit: minutes)\n> ')
 	duration = int(duration)*60
 
-	sequence_value = open('/home/.gomora/Secure_Working_Sessions/ressources/files/sequence_value','w')
+	sequence_value = open('/home/Secure_Working_Sessions/ressources/files/sequence_value','w')
 	sequence_value.write(sequence)
 	sequence_value.close()
 
-	duration_value = open('/home/.gomora/Secure_Working_Sessions/ressources/files/duration_value','w')
+	duration_value = open('/home/Secure_Working_Sessions/ressources/files/duration_value','w')
         duration_value.write(str(duration))
 	duration_value.close()
 
@@ -157,7 +157,7 @@ def Start_a_new_session() :
 
 	print(str('\nStarting sequence : ')+str(sequence)+str('...\n'))
 
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/new_session.sh'])
+	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/new_session.sh'])
         clear_screen()
         Main()
 
@@ -178,11 +178,11 @@ def Open_a_previous_working_sequence() :
 	braquet = "'"
 	dir = braquet+str(dir)+braquet
 	process_content=str("nautilus ")+dir+str(" >/dev/null 2>&1 </dev/null &")
-	process = open('/home/.gomora/Secure_Working_Sessions/ressources/bash/open_folder.sh','w')
+	process = open('/home/Secure_Working_Sessions/ressources/bash/open_folder.sh','w')
 	process.write(str("#!/bin/bash\n"))
 	process.write(process_content)
 	process.close()
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/open_folder.sh'])
+	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/open_folder.sh'])
 	clear_screen()
 	Main()
 

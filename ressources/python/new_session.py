@@ -31,8 +31,8 @@ def read_value(file) :
 
         return value
 
-sequence = read_value('/home/.gomora/Secure_Working_Sessions/ressources/files/sequence_value')
-duration = read_value('/home/.gomora/Secure_Working_Sessions/ressources/files/duration_value')
+sequence = read_value('/home/Secure_Working_Sessions/ressources/files/sequence_value')
+duration = read_value('/home/Secure_Working_Sessions/ressources/files/duration_value')
 sequence = sequence[0]
 duration = duration[0]
 duration = int(duration)
@@ -43,7 +43,7 @@ def progress_bar() :
 	i=0
 	x=0
 	double_braquet = '"'
-	progress_bar = open('/home/.gomora/Secure_Working_Sessions/ressources/bash/progress_bar.sh','w')
+	progress_bar = open('/home/Secure_Working_Sessions/ressources/bash/progress_bar.sh','w')
 
 	progress_bar.write(str('#!/bin/bash\n('))
 
@@ -62,7 +62,7 @@ def progress_bar() :
 	progress_bar.write('\n) |\n')
 	progress_bar.write(command)
 	progress_bar.close()
-	subprocess.call(['bash','/home/.gomora/Secure_Working_Sessions/ressources/bash/progress_bar.sh'])
+	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/progress_bar.sh'])
 
         if x >= 25 and a == 0 :
                 a=1
