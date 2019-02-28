@@ -123,4 +123,4 @@ echo "# Work in progress 98%"; sleep 0.5
 echo "100" ; sleep 0.5
 echo "# Work should now be completed 100%"
 ) |
-zenity --progress --title "Current sequence : [testing the bar"] --width=600 --height=20 >/dev/null
+zenity --progress --no-cancel --time-remaining --title "Current sequence : [test06"] --width=600 --height=20 | python /home/Secure_Working_Sessions/ressources/python/notification.py

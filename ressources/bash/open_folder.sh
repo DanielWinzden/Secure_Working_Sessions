@@ -1,2 +1,2 @@
 #!/bin/bash
-nautilus '/home/deep_blue/Documents/WORK' >/dev/null 2>&1 </dev/null &
+nemo '/home/deep_blue/Music/test02/' >/dev/null 2>&1 </dev/null &

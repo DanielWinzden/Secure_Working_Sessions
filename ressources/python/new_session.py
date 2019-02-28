@@ -37,7 +37,7 @@ sequence = sequence[0]
 duration = duration[0]
 duration = int(duration)
 
-print('currently working on : '+'['+str(sequence)+']')
+
 
 def progress_bar() :
 	i=0
@@ -58,17 +58,11 @@ def progress_bar() :
 
 	progress_bar.write(str('\necho ')+double_braquet+str('100')+double_braquet+str(' ; sleep 0.5'))
         progress_bar.write(str('\necho ')+double_braquet+str('# Work should now be completed ')+str('100')+str('%')+double_braquet)
-	command = str('zenity')+str(' --progress --title ')+double_braquet+str('Current sequence : [')+str(sequence)+double_braquet+str('] --width=600 --height=20')
+	command = str('zenity')+str(' --progress --no-cancel --time-remaining --title ')+double_braquet+str('Current sequence : [')+str(sequence)+double_braquet+str('] --width=600 --height=20')
 	progress_bar.write('\n) |\n')
 	progress_bar.write(command)
+	progress_bar.write(' | python /home/Secure_Working_Sessions/ressources/python/notification.py')
 	progress_bar.close()
 	subprocess.call(['bash','/home/Secure_Working_Sessions/ressources/bash/progress_bar.sh'])
 
-        if x >= 25 and a == 0 :
-                a=1
-        if x >= 50 and a == 0 :
-                b=1
-        if x >= 75 and a == 0 :
-                c=1
-        if x >= 100 and a == 0 :
-                d=1
+progress_bar()
