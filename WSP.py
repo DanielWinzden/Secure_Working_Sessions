@@ -4,13 +4,14 @@ import subprocess, time, os, sys
 
 #installation
 if not os.path.isfile('/home/Secure_Working_Sessions/installation'):
+	#os.mkdir('/home/Secure_Working_Sessions')
         installation = open('/home/Secure_Working_Sessions/installation','w')
 	print("               +--------------+")
 	print("               | Installation |")
 	print("               +--------------+\n")
 	subprocess.call(['sudo','apt-get','install','ccrypt','mplayer','zenity','git','tree','nemo','-y'])
 	if not os.path.isdir('/home/Secure_Working_Sessions'):
-		subprocess.call(['git','clone','https://github.com/DanielWinzden/Secure_Working_Sessions.git'])
+		subprocess.call(['git','clone','/home/','https://github.com/DanielWinzden/Secure_Working_Sessions.git'])
 	installation.write('WSP installed')
 	installation.close()
         print("            +---------------------+")
